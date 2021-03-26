@@ -1,4 +1,4 @@
-﻿// Transport.cpp : https://www.coursera.org/ C++ Development Fundamentals: Black Belt, Week 1.
+// Transport.cpp : https://www.coursera.org/ C++ Development Fundamentals: Black Belt, Week 1.
 // Task: Transport Guide, Part F. Implement SVG library. (CRTP method is used) 
 
 #include <iostream>
@@ -76,7 +76,7 @@ namespace Svg {
             stream << " "; 
             return stream;
         }
-        virtual std::shared_ptr<Figure> GetObjPtr() = 0;
+        virtual std::shared_ptr<Figure> GetObjPtr() const = 0;
         virtual std::ostream& GetChildStream(std::ostream& stream) = 0;
         virtual ~Figure() {};
     };
@@ -89,7 +89,7 @@ namespace Svg {
         Derived& SetStrokeWidth(double w) { return static_cast<Derived&>(Figure::SetStrokeWidth(w)); }
         Derived& SetStrokeLineCap(const std::string& l_c) { return static_cast<Derived&>(Figure::SetStrokeLineCap(l_c)); }
         Derived& SetStrokeLineJoin(const std::string& l_j) { return static_cast<Derived&>(Figure::SetStrokeLineJoin(l_j)); }
-        std::shared_ptr<Figure> GetObjPtr() override { return std::make_shared<Derived>(static_cast<Derived&>(*this)); }
+        std::shared_ptr<Figure> GetObjPtr() const override { return std::make_shared<Derived>(static_cast<const Derived&>(*this)); }
     };
 
     class Circle : public Figure_CRTP<Circle> {
@@ -136,7 +136,7 @@ namespace Svg {
         Text& SetData(const std::string& t) { m_text = t; return *this; }
         std::ostream& GetChildStream(std::ostream& stream) override {
             //return stream << "<text x=\"" << m_onset.x << "\", y=\"" << m_onset.y << "\" dx=\""
-            stream << "x=\"" << m_onset.x << "\", y=\"" << m_onset.y 
+            stream << "x=\"" << m_onset.x << "\" y=\"" << m_onset.y 
                    << "\" dx=\"" << m_offset.x << "\" dy=\"" << m_offset.y;
             if(m_font_name) { stream << "\" font-family=\"" << m_font_name.value(); }
             stream << "\" font-size=\"" << m_font_size << "\" >"
@@ -158,7 +158,7 @@ namespace Svg {
     private:
         std::vector<std::shared_ptr<Figure>> m_ptrs;
     public:
-        void Add(Figure& f) { m_ptrs.push_back(f.GetObjPtr()); }
+        void Add(const Figure& f) { m_ptrs.push_back(f.GetObjPtr()); }
 
         void Render(std::ostream& os) {
             GetHeaderStream(os);
@@ -174,6 +174,7 @@ namespace Svg {
 
 int main() {
     Svg::Document svg;
+
     svg.Add(
         Svg::Polyline{}
         .SetStrokeColor(Svg::Rgb{ 140, 198, 63 })  // soft green
@@ -212,6 +213,17 @@ int main() {
         .SetData("C++")
     );
 
+    svg.Add(
+        Svg::Text{}
+        .SetPoint({ 2.000000, 30.000000 })
+        .SetOffset({ 1.000000, 2.000000 })
+        .SetFontSize(30)
+        .SetFillColor(Svg::Rgb{ 5, 155, 37 })
+        .SetStrokeColor(Svg::Rgb{ 145, 135, 200 }) 
+        .SetStrokeWidth(5.500000)
+        .SetData("txt")
+    );
+       
     svg.Render(std::cout);
 
     return 0;
