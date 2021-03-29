@@ -18,6 +18,9 @@
     <ClCompile Include="Transport_F.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="svg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="svg.h">
