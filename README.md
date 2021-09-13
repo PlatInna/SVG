@@ -1,10 +1,7 @@
-### Simplified library to output vector images in SVG format.
-### Coursera, C++ Development Fundamentals: Black Belt, Week 1.
-
- Implemented three types of objects using CRTP idiom:
-    - Circle
-    - Polyline
-    - Text
+#### Implemented three types of objects using CRTP idiom:  
+    - Circle  
+    - Polyline  
+    - Text  
 
 #### Example
 ``` C++
