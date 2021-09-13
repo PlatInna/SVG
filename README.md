@@ -1,7 +1,11 @@
-#### Implemented three types of objects using CRTP idiom:  
+dir /Transport_F
+
+Implemented three types of objects:  
     - Circle  
     - Polyline  
     - Text  
+    
+CRTP idiom is used.
 
 #### Example
 ``` C++
@@ -58,4 +62,4 @@ svg.Render(std::cout);
 <text x="250" y="250" dx="10" dy="-10" font-size="20" font-family="Verdana" fill="black" stroke="none" stroke-width="1" >C++</text></svg>
 ```
 
-
+![example](https://github.com/PlatInna/SVG/tree/master/Transport_F/example_out.jpg)
