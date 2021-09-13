@@ -1,5 +1,5 @@
 // Transport.cpp : https://www.coursera.org/ C++ Development Fundamentals: Black Belt, Week 1.
-// Task: Transport Guide, Part F. Implement SVG library. (CRTP method is used) 
+// Task: Implement simplify SVG library. (CRTP method is used) 
 
 #include "svg.h"
 
@@ -8,7 +8,7 @@ int main() {
 
     svg.Add(
         Svg::Polyline{}
-        .SetStrokeColor(Svg::Rgb{ 140, 198, 63 })  // soft green
+        .SetStrokeColor(Svg::Rgb{ 140, 198, 63 })  
         .SetStrokeWidth(16)
         .SetStrokeLineCap("round")
         .AddPoint({ 50, 50 })
