@@ -1,11 +1,11 @@
-dir /Transport_F
+Simplified library to output vector images in SVG format.
 
 Implemented three types of objects:  
     - Circle  
     - Polyline  
     - Text  
-    
-CRTP idiom is used.
+The color can be set as a string or rgb-values.      
+Method calls when creating Circle, Polyline, or Text objects can be chained. CRTP idiom is used. dir /Transport_F
 
 #### Example
 ``` C++
