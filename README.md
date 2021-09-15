@@ -5,7 +5,7 @@ Implemented three types of objects:
     - Polyline  
     - Text  
 The color can be set as a string or rgb-values.      
-Method calls when creating Circle, Polyline, or Text objects can be chained. CRTP idiom is used. dir /Transport_F
+Method calls when creating Circle, Polyline, or Text objects can be chained. CRTP idiom is used. See /Transport_F.
 
 #### Example
 ``` C++
